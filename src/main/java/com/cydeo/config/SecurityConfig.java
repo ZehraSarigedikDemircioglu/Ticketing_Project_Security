@@ -18,22 +18,22 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
-
-        List<UserDetails> userList = new ArrayList<>();
-
-        userList.add(
-                new User("mike",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")))
-        );
-
-        userList.add(
-                new User("ozzy",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER")))
-        );
-
-        return new InMemoryUserDetailsManager(userList);
-
-    } // always Spring user, be careful not import our User entity
+//    @Bean // this is hard-coded users
+//    public UserDetailsService userDetailsService(PasswordEncoder encoder) {
+//
+//        List<UserDetails> userList = new ArrayList<>();
+//
+//        userList.add(
+//                new User("mike",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")))
+//        );
+//
+//        userList.add(
+//                new User("ozzy",encoder.encode("password"), Arrays.asList(new SimpleGrantedAuthority("ROLE_MANAGER")))
+//        );
+//
+//        return new InMemoryUserDetailsManager(userList);
+//
+//    } // always Spring user, be careful not import our User entity
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
