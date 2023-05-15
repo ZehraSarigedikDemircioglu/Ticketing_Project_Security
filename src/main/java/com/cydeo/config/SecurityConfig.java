@@ -39,6 +39,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()// authorization for each request, localhost:8080 with the user what is the authorization
+                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/project/**").hasRole("MANAGER")
+                .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
+                .antMatchers("/task/**").hasRole("MANAGER")
                 .antMatchers( // certain things in the pages, we permit anybody can access these pages
                         "/",
                         "/login",
