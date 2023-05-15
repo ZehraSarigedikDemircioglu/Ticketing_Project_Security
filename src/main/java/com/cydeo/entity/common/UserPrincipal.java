@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user; // get user from db
+    private User user; // get user from db and so mapping will do
 
     public UserPrincipal(User user) {
         this.user = user;
