@@ -43,6 +43,8 @@ public class SecurityConfig {
                 .antMatchers("/project/**").hasRole("MANAGER")
                 .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
                 .antMatchers("/task/**").hasRole("MANAGER")
+//                .antMatchers("/task/**").hasAnyRole("EMPLOYEE", "ADMIN") // we do not use this, but it is just example it can be multiple duty
+                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
                 .antMatchers( // certain things in the pages, we permit anybody can access these pages
                         "/",
                         "/login",
