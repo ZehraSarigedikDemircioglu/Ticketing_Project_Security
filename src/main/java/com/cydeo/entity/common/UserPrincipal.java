@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user; // get user from db and convert to Spring then Spring does automatically
+    private User user; // get user from db
 
     public UserPrincipal(User user) {
         this.user = user;
