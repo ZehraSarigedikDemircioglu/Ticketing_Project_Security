@@ -54,7 +54,12 @@ public class SecurityConfig {
                 ).permitAll()
                 .anyRequest().authenticated() // any other request needs to be authenticated
                 .and()
-                .httpBasic() // one pop-up page
+//                .httpBasic() // one pop-up page
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/welcome")
+                .failureUrl("/login?error=true")
+                .permitAll()
                 .and().build();
     }
 }
