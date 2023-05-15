@@ -2,7 +2,6 @@ package com.cydeo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,5 +31,5 @@ public class SecurityConfig {
 
         return new InMemoryUserDetailsManager(userList);
 
-    } // always Spring user, be careful not use our User entity
+    } // always Spring user, be careful not import our User entity
 }
