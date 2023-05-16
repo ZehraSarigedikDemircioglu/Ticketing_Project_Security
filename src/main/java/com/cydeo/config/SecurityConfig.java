@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +65,10 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
                 .failureUrl("/login?error=true")// if user put wrong info, this end point will occur
                 .permitAll()// accessible for anyone to reach login page
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
                 .and().build();
     }
 }
