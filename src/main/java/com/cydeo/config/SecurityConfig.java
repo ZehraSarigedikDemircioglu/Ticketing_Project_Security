@@ -39,12 +39,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()// authorization for each request, localhost:8080 with the user what is the authorization
-                .antMatchers("/user/**").hasRole("ADMIN")
-                .antMatchers("/project/**").hasRole("MANAGER")
-                .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
-                .antMatchers("/task/**").hasRole("MANAGER")
-//                .antMatchers("/task/**").hasAnyRole("EMPLOYEE", "ADMIN") // we do not use this, but it is just example it can be multiple duty
-                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
+//                .antMatchers("/user/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/project/**").hasAuthority("Manager")
+                .antMatchers("/task/employee/**").hasAuthority("Employee")
+                .antMatchers("/task/**").hasAuthority("Manager")
+//                .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
+//                .antMatchers("/task/**").hasRole("MANAGER")
+////                .antMatchers("/task/**").hasAnyRole("EMPLOYEE", "ADMIN") // we do not use this, but it is just example it can be multiple duty
+//                .antMatchers("/task/**").hasAuthority("ROLE_EMPLOYEE")
                 .antMatchers( // certain things in the pages, we permit anybody can access these pages
                         "/",
                         "/login",
@@ -55,11 +58,11 @@ public class SecurityConfig {
                 .anyRequest().authenticated() // any other request needs to be authenticated
                 .and()
 //                .httpBasic() // one pop-up page
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/welcome")
-                .failureUrl("/login?error=true")
-                .permitAll()
+                .formLogin()// I want to introduce my own validation form
+                .loginPage("/login")// representation of login page, view through controller
+                .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
+                .failureUrl("/login?error=true")// if user put wrong info, this end point will occur
+                .permitAll()// accessible for anyone to reach login page
                 .and().build();
     }
 }
