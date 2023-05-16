@@ -39,9 +39,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeRequests()// authorization for each request, localhost:8080 with the user what is the authorization
-//                .antMatchers("/user/**").hasRole("ADMIN")
+//                .antMatchers("/user/**").hasRole("ADMIN") // hasRole makes it automatically Role_Admin and it gives us problem.
+                // It has to match role with the db. Since in my db, it is Admin, not underscore, I use hasAuthority. Or I should change it in db.
                 .antMatchers("/user/**").hasAuthority("Admin")
-                .antMatchers("/project/**").hasAuthority("Manager")
+                .antMatchers("/project/**").hasAuthority("Manager") // antMatchers are related to pages
                 .antMatchers("/task/employee/**").hasAuthority("Employee")
                 .antMatchers("/task/**").hasAuthority("Manager")
 //                .antMatchers("/task/employee/**").hasRole("EMPLOYEE")
