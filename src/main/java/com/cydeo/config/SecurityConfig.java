@@ -71,5 +71,6 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/login")
                 .and()
                 .build();
+
     }
 }
