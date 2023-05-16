@@ -69,7 +69,8 @@ public class SecurityConfig {
 //                .httpBasic() // one pop-up page
                 .formLogin()// I want to introduce my own validation form
                 .loginPage("/login")// representation of login page, view through controller
-                    .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
+//                    .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
+                    .successHandler()
                     .failureUrl("/login?error=true")// if user put wrong info, this end point will occur
                     .permitAll()// accessible for anyone to reach login page
                 .and()
