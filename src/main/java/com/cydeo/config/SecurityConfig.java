@@ -21,9 +21,11 @@ import java.util.List;
 public class SecurityConfig {
 
     private final SecurityService securityService;
+    private final AuthSuccessHandler authSuccessHandler;
 
-    public SecurityConfig(SecurityService securityService) {
+    public SecurityConfig(SecurityService securityService, AuthSuccessHandler authSuccessHandler) {
         this.securityService = securityService;
+        this.authSuccessHandler = authSuccessHandler;
     }
 
     //    @Bean // this is hard-coded users
@@ -70,7 +72,7 @@ public class SecurityConfig {
                 .formLogin()// I want to introduce my own validation form
                 .loginPage("/login")// representation of login page, view through controller
 //                    .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
-                    .successHandler()
+                    .successHandler(authSuccessHandler)// specific pages, not default welcome
                     .failureUrl("/login?error=true")// if user put wrong info, this end point will occur
                     .permitAll()// accessible for anyone to reach login page
                 .and()
