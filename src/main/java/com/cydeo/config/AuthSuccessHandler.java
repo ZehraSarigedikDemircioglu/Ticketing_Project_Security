@@ -18,7 +18,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities()); // capture role and successHandler() open that related page
 
-        // if anybody has more than one role
+        // our logic is in this app, only one role => UserPrincipal class, getAuthorities() method takes only one role
         if(roles.contains("Admin")){
             response.sendRedirect("/user/create");
         }
