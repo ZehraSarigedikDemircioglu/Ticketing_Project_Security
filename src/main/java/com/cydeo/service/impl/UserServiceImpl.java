@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
 
         User obj = userMapper.convertToEntity(user);
         obj.setPassWord(passwordEncoder.encode(obj.getPassWord()));
+        userRepository.save(obj);
 //        userRepository.save(userMapper.convertToEntity(user)); // remove this since we need to encode password for security part
     }
 
