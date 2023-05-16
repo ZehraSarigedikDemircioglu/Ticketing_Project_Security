@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user; // get user from db and so mapping will do
+    private User user; // get user from db and so mapping will do, Spring understands
 
     public UserPrincipal(User user) {
         this.user = user;
@@ -28,7 +28,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.user.getPassWord();
+        return this.user.getPassWord(); // access password of the user object
     }
 
     @Override
