@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .authorizeRequests()// authorization for each request, localhost:8080 with the user what is the authorization
 //                .antMatchers("/user/**").hasRole("ADMIN") // hasRole makes it automatically Role_Admin and it gives us problem.
                 // It has to match role with the db. Since in my db, it is Admin, not underscore, I use hasAuthority. Or I should change it in db.
-                .antMatchers("/user/**").hasAuthority("Admin")
+                .antMatchers("/user/**").hasAuthority("Admin") // all user
                 .antMatchers("/project/**").hasAuthority("Manager") // antMatchers are related to pages
                 .antMatchers("/task/employee/**").hasAuthority("Employee")
                 .antMatchers("/task/**").hasAuthority("Manager")
@@ -72,7 +72,7 @@ public class SecurityConfig {
                 .formLogin()// I want to introduce my own validation form
                 .loginPage("/login")// representation of login page, view through controller
 //                    .defaultSuccessUrl("/welcome")// login is successful with correct username and password, this is the page end point
-                    .successHandler(authSuccessHandler)// specific pages, not default welcome
+                    .successHandler(authSuccessHandler)// specific pages, not default welcome since every role different page
                     .failureUrl("/login?error=true")// if user put wrong info, this end point will occur
                     .permitAll()// accessible for anyone to reach login page
                 .and()
@@ -80,7 +80,7 @@ public class SecurityConfig {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login")
                 .and()
-                .rememberMe()
+                .rememberMe() // keep session if you close the window
                     .tokenValiditySeconds(120)
                     .key("cydeo")
                     .userDetailsService(securityService)
