@@ -11,10 +11,10 @@ import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
 @Component
-public class BaseEntityListener extends AuditingEntityListener {
+public class BaseEntityListener extends AuditingEntityListener { // related to db. Otherwise db detect as null without setUserId. Authentication will be null, does not know who login because of null.
 
     @PrePersist
-    private void onPrePersist(BaseEntity baseEntity){
+    private void onPrePersist(BaseEntity baseEntity){ // saving the db
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
