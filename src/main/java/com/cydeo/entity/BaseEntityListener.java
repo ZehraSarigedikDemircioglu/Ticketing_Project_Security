@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Component
 public class BaseEntityListener extends AuditingEntityListener { // related to db. Otherwise db detect as null without setUserId. Authentication will be null, does not know who login because of null.
+
     @PrePersist
     private void onPrePersist(BaseEntity baseEntity){ // saving the db
 
